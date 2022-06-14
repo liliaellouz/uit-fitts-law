@@ -230,6 +230,7 @@ var fittsTest = {
 	mouseClicked: function(x, y) {
 		
 		if (distance({x: x, y: y}, this.target) < (this.target.w / 2)) {
+			console.log(this)
 			this.addDataPoint({start: this.start,
 							   target: this.target,
 							   path: this.currentPath,
@@ -312,6 +313,8 @@ var fittsTest = {
 		{
 			var dist = distance(data.target, data.start);
 			var id = shannon(dist, data.target.w);
+
+			console.log(this)
 
 			this.data[this.currentDataSet].data.push({time: dt, distance: data.target.distance, width: data.target.w, hit: data.hit,
 				start: data.start, target: data.target, path: data.path});
@@ -1151,7 +1154,7 @@ fittsTest.generateISOPositions(15, 150, 10);
 fittsTest.updateISOCircles();
 d3.select('#sliderDistanceValue').text(fittsTest.isoParams.distance);
 d3.select('#sliderWidthValue').text(fittsTest.isoParams.width);
-fittsTest.addDataSet();
+// fittsTest.addDataSet();
 
 // setup sliders
 $("#sliderDistance").slider({
