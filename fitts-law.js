@@ -408,105 +408,105 @@ var fittsTest = {
 		d3.select('#sliderWidthValue').text(this.isoParams.width);
 	},
 	
-	addDataSet: function() {
+	// addDataSet: function() {
 		
-		// first update the plots
-		this.updatePlots(this);
+	// 	// first update the plots
+	// 	this.updatePlots(this);
 		
-		this.dataCnt++;
-		var num = this.dataCnt;
-		var colour = this.colour(randomAB(0, 10));
+	// 	this.dataCnt++;
+	// 	var num = this.dataCnt;
+	// 	var colour = this.colour(randomAB(0, 10));
 		
-		this.data[num] = {data: [], colour: colour};
+	// 	this.data[num] = {data: [], colour: colour};
 		
-		this.currentDataSet = num
-		var div = d3.select('#dataSets').append('div')
-			.attr('id', 'dataSet' + num)
-			.text('Data Set ' + num + ' ')
-			.style('background-color', colour);
+	// 	this.currentDataSet = num
+	// 	var div = d3.select('#dataSets').append('div')
+	// 		.attr('id', 'dataSet' + num)
+	// 		.text('Data Set ' + num + ' ')
+	// 		.style('background-color', colour);
 		
-		var buttonID ='removeDataSet' + num;
-		div.append('button')
-			.attr('id', buttonID)
-			.attr('type', 'button')
-			.text('delete!');
+	// 	var buttonID ='removeDataSet' + num;
+	// 	div.append('button')
+	// 		.attr('id', buttonID)
+	// 		.attr('type', 'button')
+	// 		.text('delete!');
 			
-		var that = this;
+	// 	var that = this;
 		
-		$('#' + buttonID).click(function() {
-			that.deleteDataSet(num);
-			fittsTest.active = false;
-		});
+	// 	$('#' + buttonID).click(function() {
+	// 		that.deleteDataSet(num);
+	// 		fittsTest.active = false;
+	// 	});
 		
-		$('#dataSet' + num).click(function() {
-			if (assIsKey(num, that.data)) {
-				that.currentDataSet = num;
-				that.highlightDataSet(num);				
-			}
-			fittsTest.active = false;
+	// 	$('#dataSet' + num).click(function() {
+	// 		if (assIsKey(num, that.data)) {
+	// 			that.currentDataSet = num;
+	// 			that.highlightDataSet(num);				
+	// 		}
+	// 		fittsTest.active = false;
 
-		})
+	// 	})
 			
-		this.highlightDataSet(num);
-		// add colour
+	// 	this.highlightDataSet(num);
+	// 	// add colour
 		
-	},
+	// },
 	
-	deleteDataSet: function(num) {
-		if (assSize(this.data) == 1)
-		{
-			alert('Cannot delete data set! Create another data set first.')
-		} else
-		{	
-			d3.select('#dataSet' + num).remove();
-			delete this.data[num];
+	// deleteDataSet: function(num) {
+	// 	if (assSize(this.data) == 1)
+	// 	{
+	// 		alert('Cannot delete data set! Create another data set first.')
+	// 	} else
+	// 	{	
+	// 		d3.select('#dataSet' + num).remove();
+	// 		delete this.data[num];
 			
-			scatterGroup.selectAll('.cat' + num)
-				.transition()
-					.duration(500)
-						.attr('r', 0)
-						.remove();
+	// 		scatterGroup.selectAll('.cat' + num)
+	// 			.transition()
+	// 				.duration(500)
+	// 					.attr('r', 0)
+	// 					.remove();
 			
-			scatterEffectiveGroup.selectAll('.cat' + num)
-				.transition()
-					.duration(500)
-						.style('opacity', 0)
-						.remove();
+	// 		scatterEffectiveGroup.selectAll('.cat' + num)
+	// 			.transition()
+	// 				.duration(500)
+	// 					.style('opacity', 0)
+	// 					.remove();
 			
-			throughputGroup.selectAll('rect.cat' + num)
-				.transition()
-					.duration(500)
-						.attr('width', 0)
-						.remove();
+	// 		throughputGroup.selectAll('rect.cat' + num)
+	// 			.transition()
+	// 				.duration(500)
+	// 					.attr('width', 0)
+	// 					.remove();
 						
-			positionEffectiveGroup.selectAll('line.cat' + num)
-				.transition()
-					.duration(500)
-						.style('opacity', 0)
-						.remove()
+	// 		positionEffectiveGroup.selectAll('line.cat' + num)
+	// 			.transition()
+	// 				.duration(500)
+	// 					.style('opacity', 0)
+	// 					.remove()
 			
-			speedEffectiveGroup.selectAll('line.cat' + num)
-				.transition()
-					.duration(500)
-						.style('opacity', 0)
-						.remove()
+	// 		speedEffectiveGroup.selectAll('line.cat' + num)
+	// 			.transition()
+	// 				.duration(500)
+	// 					.style('opacity', 0)
+	// 					.remove()
 			
-			if (num == this.currentDataSet) {
-				var first = parseInt(assFirstKey(this.data));
-				this.currentDataSet = first;
-				this.highlightDataSet(first);
-			}
+	// 		if (num == this.currentDataSet) {
+	// 			var first = parseInt(assFirstKey(this.data));
+	// 			this.currentDataSet = first;
+	// 			this.highlightDataSet(first);
+	// 		}
 			
-			this.updatePlots(this);
-		}
-	},
+	// 		this.updatePlots(this);
+	// 	}
+	// },
 	
-	highlightDataSet: function(num) {
-		d3.selectAll('#dataSets div')
-			.attr('class', '');
-		d3.select('#dataSet' + num)
-			.attr('class', 'active')
-	},
+	// highlightDataSet: function(num) {
+	// 	d3.selectAll('#dataSets div')
+	// 		.attr('class', '');
+	// 	d3.select('#dataSet' + num)
+	// 		.attr('class', 'active')
+	// },
 	
 	updatePlots: function(that) {
 		// a little I candy :D
